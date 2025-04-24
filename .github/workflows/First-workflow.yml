@@ -30,3 +30,17 @@ jobs:
         run: |
           echo "Value: $MY_ENV_VAR"
           echo "Secret: ${{ secrets.MY_SECRET_VAR }}"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get code
+        uses: actions/checkout@v4
+      - name: Get dependencies
+        run: npm ci
+      - name: Build the app
+        run: npm run build
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Pseudo Deployment
+        run: echo "Deploying App"
