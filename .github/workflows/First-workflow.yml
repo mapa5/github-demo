@@ -1,11 +1,13 @@
 name: First Workflow
-on: workflow_dispatch
+on: [push, workflow_dispatch]
 jobs:
   first-job:
     runs-on: ubuntu-latest
     steps:
       - name: Print Hello World
-        run: echo "Hello World"
+        run: 
+          echo "Hello World"
+          echo "Another line"
       - name: Print a second step
         shell: python
         run: print("Woaw a python line")
