@@ -11,3 +11,23 @@ jobs:
       - name: Print a second step
         shell: python
         run: print("Woaw a python line")
+      - name: Get Info
+        run: |
+          hostname
+          pwd
+          ls -l /
+      - name: Create a file
+        run: |
+          ls -al
+          echo "One line" | tee myFile.log
+          ls -al
+      - name: A final step
+        run: ls -al
+  second-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: check file there
+        run: |
+          hostname
+          pwd
+          ls -al
