@@ -29,3 +29,4 @@ jobs:
       - name: Test environment variable
         run: |
           echo "Value: $MY_ENV_VAR"
+          echo "Secret: ${{ secrets.MY_ENV_VAR }}"
