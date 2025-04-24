@@ -7,4 +7,5 @@ jobs:
       - name: Print Hello World
         run: echo "Hello World"
       - name: Print a second step
-        run: echo "Another Step"
+        shell: python
+        run: print("Woaw a python line")
