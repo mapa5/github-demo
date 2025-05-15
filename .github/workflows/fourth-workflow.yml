@@ -75,10 +75,7 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       artifact-name: my-app
-    outputs:
-      result:
-       description: Workflow Deployment Result
-       value: ${{ jobs.deploy.outputs.job-result }}
+      
   post-deploy:
     needs: deploy
     runs-on: ubuntu-latest

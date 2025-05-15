@@ -6,6 +6,10 @@ on:
         required: false
         default: none
         type: string
+    outputs:
+      result:
+       description: Workflow Deployment Result
+       value: ${{ jobs.deploy.outputs.job-result }}
 jobs:
   deploy:
     runs-on: ubuntu-latest
