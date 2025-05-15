@@ -1,6 +1,9 @@
 name: fourth Workflow
 on:
   push:
+    branches:
+      - master
+      - 'releases/**'
   workflow_dispatch:
     inputs:
       display-bom:
@@ -75,7 +78,7 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       artifact-name: my-app
-      
+
   post-deploy:
     needs: deploy
     runs-on: ubuntu-latest
