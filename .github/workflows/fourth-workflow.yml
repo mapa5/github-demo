@@ -72,16 +72,3 @@ jobs:
   deploy:
     needs: [build, lint]
     uses: ./.github/workflows/deploy.yml
-    runs-on: ubuntu-latest
-    steps:
-      - name: Pseudo Deployement
-        run: echo "Deploying App"
-      - name: Get artifacts
-        uses: actions/download-artifact@v4
-        with:
-          name: my-app
-      - name: Output artifacts
-        run: ls
-      - name: Display BOM
-        if: github.event.inputs.display-bom
-        run: echo "${{ needs.build.outputs.bom }}"
