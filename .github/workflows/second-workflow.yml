@@ -70,7 +70,7 @@ jobs:
     outputs:
       bom: ${{ steps.publish-bom.outputs.bom_list }}
   deploy:
-    needs: build
+    needs: [build, lint]
     runs-on: ubuntu-latest
     steps:
       - name: Pseudo Deployement
