@@ -67,6 +67,7 @@ jobs:
           echo 'bom_list<<EOF' >> $GITHUB_OUTPUT
           find dist -name '*.js' -exec echo '{}' \; >> $GITHUB_OUTPUT
           echo EOF >> $GITHUB_OUTPUT
+
     outputs:
       bom: ${{ steps.publish-bom.outputs.bom_list }}
   deploy:
@@ -74,3 +75,13 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       artifact-name: my-app
+    outputs:
+      result:
+       description: Workflow Deployment Result
+       value: ${{ jobs.deploy.outputs.job-result }}
+  post-deploy:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy output
+        run: echo "${{ needs.deploy.outputs.result }}"
