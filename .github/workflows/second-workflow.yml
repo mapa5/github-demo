@@ -65,4 +65,7 @@ jobs:
       - name: Output artifacts
         run: ls
       - name: Display BOM
+        if: github.event.inputs.display-bom
         run: echo "${{ needs.build.outputs.bom }}"
+
+        
