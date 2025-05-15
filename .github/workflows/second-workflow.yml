@@ -37,6 +37,14 @@ jobs:
         with:
           name: my-app
           path: dist
+      - name: Detail content
+        id: publish-bom
+        run: |
+          echo 'bom_list<<EOF' >> $GITHUB_OUTPUT
+          find dist -name '*.js' -exec echo '{}' \; >> $GITHUB_OUTPUT
+          echo EOF >> $GITHUB_OUTPUT
+    outputs:
+      bom: ${{ steps.publish-bom.outputs.bom_list }}
   deploy:
     needs: build
     runs-on: ubuntu-latest
@@ -49,4 +57,5 @@ jobs:
           name: my-app
       - name: Output artifacts
         run: ls
-      
+      - name: Display BOM
+        run: echo "${{ needs.build.outputs.bom }}"
