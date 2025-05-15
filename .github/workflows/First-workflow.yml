@@ -1,46 +1,46 @@
-name: First Workflow
-on: [push, workflow_dispatch]
-jobs:
-  first-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print Hello World
-        run: |
-          echo "Hello World"
-          echo "Another line"
-      - name: Print a second step
-        shell: python
-        run: print("Woaw a python line")
-      - name: Get Info
-        run: |
-          hostname
-          pwd
-          ls -l /
-      - name: Create a file
-        run: |
-          ls -al
-          echo "One line" | tee myFile.log
-          ls -al
-      - name: A final step
-        run: ls -al
-  second-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test environment variable
-        run: |
-          echo "Value: $MY_ENV_VAR"
-          echo "Secret: ${{ secrets.MY_SECRET_VAR }}"
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Get code
-        uses: actions/checkout@v4
-      - name: Get dependencies
-        run: npm ci
-      - name: Build the app
-        run: npm run build
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Pseudo Deployment
-        run: echo "Deploying App"
+# name: First Workflow
+# on: [push, workflow_dispatch]
+# jobs:
+#   first-job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Print Hello World
+#         run: |
+#           echo "Hello World"
+#           echo "Another line"
+#       - name: Print a second step
+#         shell: python
+#         run: print("Woaw a python line")
+#       - name: Get Info
+#         run: |
+#           hostname
+#           pwd
+#           ls -l /
+#       - name: Create a file
+#         run: |
+#           ls -al
+#           echo "One line" | tee myFile.log
+#           ls -al
+#       - name: A final step
+#         run: ls -al
+#   second-job:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Test environment variable
+#         run: |
+#           echo "Value: $MY_ENV_VAR"
+#           echo "Secret: ${{ secrets.MY_SECRET_VAR }}"
+#   build:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Get code
+#         uses: actions/checkout@v4
+#       - name: Get dependencies
+#         run: npm ci
+#       - name: Build the app
+#         run: npm run build
+#   deploy:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Pseudo Deployment
+#         run: echo "Deploying App"
