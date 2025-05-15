@@ -4,6 +4,11 @@ on:
     branches:
       - master
       - 'releases/**'
+  pull_request:
+    branches-ignore:
+      - test
+    types:
+      - opened
   workflow_dispatch:
     inputs:
       display-bom:
@@ -73,14 +78,18 @@ jobs:
 
     outputs:
       bom: ${{ steps.publish-bom.outputs.bom_list }}
+
+
   deploy:
     needs: [build, lint]
+    if: github.event_name != 'pull_request'
     uses: ./.github/workflows/deploy.yml
     with:
       artifact-name: my-app
 
   post-deploy:
     needs: deploy
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     steps:
       - name: Print deploy output
